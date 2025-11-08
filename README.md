@@ -5,6 +5,14 @@ It’s designed to behave like an automated reliability engineer that never stop
 
 ---
 
+# AI Predictive Bug Hunter & Auto-Healer
+
+A system that monitors live APIs, predicts failures, and heals them automatically.
+
+![Dashboard Preview](assets/image.png)
+![Dashboard Preview](assets/2nd.png)
+
+
 ## What It Does
 
 - Monitors live APIs (currently using GitHub’s API for testing)
