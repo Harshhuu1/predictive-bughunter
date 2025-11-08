@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  demo-service:
+    build: ./app
+    ports:
+      - "8000:8000"
+  monitor:
+    image: python:3.10-slim
+    volumes: ['.:/code']
+    working_dir: /code
+    command: ["python","agents/monitor_agent.py"]
+    depends_on:
+      - demo-service
+  predictor:
+    image: python:3.10-slim
+    volumes: ['.:/code']
+    working_dir: /code
+    command: ["python","agents/predictor_agent.py"]
+    depends_on:
+      - monitor
+  healer:
+    image: python:3.10-slim
+    volumes: ['.:/code']
+    working_dir: /code
+    command: ["uvicorn","agents.healer_agent:app","--host","0.0.0.0","--port","9002"]
+    ports:
+      - "9002:9002"
